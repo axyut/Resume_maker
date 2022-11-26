@@ -5,12 +5,9 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
 	return (
 		<div>
-			<nav className="navbar navbar-expand-lg navbar-light bg-light">
+			<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 				<div className="container-fluid">
-					<NavLink
-						className="navbar-brand"
-						to="#navbarSupportedContent"
-					>
+					<NavLink className="navbar-brand" to="/">
 						Profiler
 					</NavLink>
 					<button
@@ -30,22 +27,13 @@ const Navbar = () => {
 					>
 						<ul className="navbar-nav ms-auto mb-2 mb-lg-0">
 							<li className="nav-item">
-								<NavLink
-									className="nav-link active"
-									aria-current="page"
-									to="/"
-								>
-									Home
+								<NavLink className="nav-link" to="/cv">
+									CV
 								</NavLink>
 							</li>
 							<li className="nav-item">
-								<NavLink className="nav-link" to="/about">
-									About
-								</NavLink>
-							</li>
-							<li className="nav-item">
-								<NavLink className="nav-link" to="/contact">
-									Contact
+								<NavLink className="nav-link" to="/manager">
+									Manager
 								</NavLink>
 							</li>
 							<li className="nav-item">
@@ -55,7 +43,7 @@ const Navbar = () => {
 							</li>
 							<li className="nav-item">
 								<NavLink className="nav-link" to="/signup">
-									SignUp
+									Register
 								</NavLink>
 							</li>
 						</ul>

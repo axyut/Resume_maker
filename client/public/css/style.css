@@ -1,0 +1,42 @@
+#root {
+	color: bisque;
+}
+
+body,
+html {
+	color: azure;
+	height: 100%;
+	background-image: url("https://wallpapercave.com/wp/wp4030805.jpg");
+
+	/* Center and scale the image nicely */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.main-home {
+	padding: 10rem;
+	text-align: center;
+}
+.main-home h1 {
+	font-size: 8rem;
+	color: rgb(205, 246, 246);
+	font-family: "Courier New", Courier, monospace;
+}
+.form-grp {
+	font-size: 4rem;
+	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+		sans-serif;
+}
+#seeyourcv {
+	padding-top: 2rem;
+	font-size: 2rem;
+	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+		sans-serif;
+}
+
+.profilePic {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+}
