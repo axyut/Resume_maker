@@ -9,6 +9,10 @@ const app = express();
 app.use(express.json());
 app.use(require("./router/auth"));
 
+if (process.env.NODE_ENV === "production") {
+	app.use(express.static("client/build/index.html"));
+}
+
 app.listen(process.env.PORT, () => {
-  console.log(`Server is running at PORT 8000`);
+	console.log(`Server is running at PORT 8000`);
 });

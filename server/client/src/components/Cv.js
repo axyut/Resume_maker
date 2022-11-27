@@ -1,7 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import profilePic from "../images/profile1.jpg";
+import { useNavigate } from "react-router-dom";
 
 const Cv = () => {
+	const navigate = useNavigate();
+	//const [userData, setUserData] = useState();
+
+	const callAboutPage = async () => {
+		try {
+			const res = fetch("/cvProfile", {
+				method: "GET",
+				headers: {
+					Accept: "application/json",
+					"Content-Type": "application/json",
+				},
+				credentials: "include",
+			});
+
+			// data coming from /cv get
+			const data = await res.json();
+			console.log(data);
+
+			if (res.status !== 200) {
+				throw new Error("go away");
+			}
+		} catch (error) {
+			console.log(error);
+			navigate("/login");
+		}
+	};
+
+	useEffect(() => {
+		callAboutPage();
+	});
+
 	return (
 		<div className="container emp-profile">
 			<form>
@@ -15,7 +47,7 @@ const Cv = () => {
 					</div>
 					<div className="col-md-6">
 						<div className="profile">
-							<h5>Hemanta Rookie</h5>
+							<h5>name</h5>
 							<h6>Frontend Developer</h6>
 							<p className="profile-rating mt-3 mb-5">
 								Ranking:<span>1/10</span>

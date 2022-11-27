@@ -2,15 +2,10 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const authenticate = require("../middleware/authenticate");
 
 require("../db/connection");
 const User = require("../model/userSchema");
-const { createIndexes } = require("../model/userSchema");
-
-// Middleware
-// const middleware = (req, res, next) => {
-//   next();
-// };
 
 router.get("/", (req, res) => {
 	res.send("Starting Router!");
@@ -65,7 +60,7 @@ router.post("/signin", async (req, res) => {
 			if (verifiedPassword) {
 				// jWT token generate
 				const getToken = await userExist.generateAuthToken();
-				console.log(getToken);
+				//console.log(getToken);
 				res.cookie("Jwt Cookie", getToken, {
 					expires: new Date(Date.now() + 259200000), // 3 days in miliseconds
 					httpOnly: true,
@@ -81,8 +76,8 @@ router.post("/signin", async (req, res) => {
 	}
 });
 
-router.get("/aboutme", (req, res) => {
-	res.send("About Me");
+router.get("/cvProfile", authenticate, (req, res) => {
+	res.send(req.rootUser);
 });
 
 router.get("/signup", (req, res) => {

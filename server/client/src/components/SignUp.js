@@ -1,28 +1,32 @@
 import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 
-const Login = () => {
+const SignUp = () => {
 	const navigate = useNavigate();
 
 	const [user, setUser] = useState({
+		name: "",
 		email: "",
+		phone: "",
 		password: "",
 	});
-	const handleChange = (event) => {
+	const handleInputs = (event) => {
 		const { name, value } = event.target;
 		setUser({ ...user, [name]: value });
 	};
 
 	const sendToBackend = async (event) => {
 		event.preventDefault();
-		const { email, password } = user;
+		const { name, email, phone, password } = user;
 		const res = await fetch("/register", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({
+				name,
 				email,
+				phone,
 				password,
 			}),
 		});
@@ -33,44 +37,60 @@ const Login = () => {
 		} else {
 			window.alert(data.message);
 		}
-		navigate("/cv");
+		navigate("/login");
 	};
 
 	return (
 		<div>
-			<h1>Login to your Account.</h1>
+			<h1>SignUp with Us.</h1>
 			<form method="POST" className="register-form" id="register-from">
 				<div className="form-group">
 					<input
 						type="text"
-						name="email"
-						value={user.email}
-						onChange={handleChange}
+						name="name"
 						autoComplete="off"
+						value={user.name}
+						onChange={handleInputs}
+						placeholder="Full Name"
+					/>
+					<input
+						type="text"
+						name="email"
+						autoComplete="off"
+						value={user.email}
+						onChange={handleInputs}
 						placeholder="Email"
+					/>
+					<input
+						type="number"
+						name="phone"
+						autoComplete="off"
+						value={user.phone}
+						onChange={handleInputs}
+						placeholder="Phone"
 					/>
 					<input
 						type="password"
 						name="password"
-						value={user.password}
-						onChange={handleChange}
 						autoComplete="off"
+						value={user.password}
+						onChange={handleInputs}
 						placeholder="Type Password"
 					/>
 					<input
 						type="submit"
-						name="signin"
-						onClick={sendToBackend}
+						name="register"
 						className="form-submit"
-						value="Log In"
+						value="Sign Up"
+						onClick={sendToBackend}
 					/>
 				</div>
-				<NavLink to="/signup" className="signup-image-link">
-					Create Account with Us.
+				<NavLink to="/login" className="signup-image-link">
+					I'm already registerd.
 				</NavLink>
 			</form>
 		</div>
 	);
 };
 
-export default Login;
+export default SignUp;
