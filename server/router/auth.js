@@ -21,7 +21,7 @@ router.post("/register", async (req, res) => {
 	if (!name || !email || !password) {
 		return res
 			.status(422)
-			.json({ message: "Please fill required fields." });
+			.json({ message: "Please fill required fields properly." });
 	}
 
 	try {
@@ -29,14 +29,19 @@ router.post("/register", async (req, res) => {
 		if (userExist) {
 			return res
 				.status(422)
-				.json({ message: "User Email already in use." });
+				.json({ message: "User Email already in use. Please Login." });
+		}
+		if (password.length < 8) {
+			return res
+				.status(422)
+				.json({ message: "Password Length must be greater than 8." });
 		}
 
 		const user = new User({ name, email, phone, password });
 		// Middleware Hash happens here
 		const registered = await user.save();
 		if (registered) {
-			res.status(201).json({ message: "user successfully registered." });
+			res.status(201).json({ message: "User successfully registered." });
 		}
 	} catch (error) {
 		res.status(500).json({ message: "Failed to register." });
@@ -66,7 +71,7 @@ router.post("/signin", async (req, res) => {
 					httpOnly: true,
 				});
 
-				res.send("login successfull");
+				res.status(200).json({ message: "Login Successful!" });
 			}
 		} else {
 			res.status(500).json({ message: "Invalid Credentials." });
