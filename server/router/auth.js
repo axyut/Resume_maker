@@ -7,10 +7,6 @@ const authenticate = require("../middleware/authenticate");
 require("../db/connection");
 const User = require("../model/userSchema");
 
-router.get("/", (req, res) => {
-	res.send("Starting Router!");
-});
-
 router.post("/register", async (req, res) => {
 	const { name, email, phone, password } = req.body;
 	if (!name || !email || !password) {
@@ -78,14 +74,6 @@ router.post("/signin", async (req, res) => {
 
 router.get("/cvProfile", authenticate, (req, res) => {
 	res.send(req.rootUser);
-});
-
-router.get("/signup", (req, res) => {
-	res.send("Create account page");
-});
-
-router.get("/settings", (req, res) => {
-	res.send("settings");
 });
 
 module.exports = router;
