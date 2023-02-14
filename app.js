@@ -14,5 +14,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.listen(process.env.PORT, () => {
-	console.log(`Server is running at PORT 8000`);
+	console.log(
+		`Server is running at PORT ${process.env.PORT}. http://localhost:${process.env.PORT}`
+	);
 });
