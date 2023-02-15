@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
+	const [loggedIn, setLoggedIn] = useState(false);
 	return (
 		<div>
 			<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -36,12 +37,19 @@ const Navbar = () => {
 									Manager
 								</NavLink>
 							</li>
+
 							<li className="nav-item">
-								<NavLink className="nav-link" to="/login">
-									Login
+								<NavLink
+									className="nav-link"
+									to={loggedIn ? "/logout" : "/login"}
+								>
+									{loggedIn ? "Logout" : "Login"}
 								</NavLink>
 							</li>
-							<li className="nav-item">
+							<li
+								className="nav-item"
+								style={{ display: loggedIn ? "none" : "" }}
+							>
 								<NavLink className="nav-link" to="/signup">
 									Register
 								</NavLink>

@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import profilePic from "../images/profile1.jpg";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 const Cv = () => {
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
 	//const [userData, setUserData] = useState();
 
 	const callAboutPage = async () => {
@@ -26,17 +26,17 @@ const Cv = () => {
 			}
 		} catch (error) {
 			console.log(error);
-			navigate("/login");
+			<Navigate to="/404" />;
 		}
 	};
 
 	useEffect(() => {
 		callAboutPage();
-	});
+	}, []);
 
 	return (
 		<div className="container emp-profile">
-			<form>
+			<form method="GET">
 				<div className="row">
 					<div className="col-md-4">
 						<img

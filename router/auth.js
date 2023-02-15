@@ -73,6 +73,7 @@ router.post("/signin", async (req, res) => {
 });
 
 router.get("/cvProfile", authenticate, (req, res) => {
+	console.log("from /cvProfile backend api");
 	res.send(req.rootUser);
 });
 
