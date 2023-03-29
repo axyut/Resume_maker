@@ -1,15 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+
 const authenticate = require("../middleware/authenticate");
 
 require("../db/connection");
 const User = require("../model/userSchema");
 
 router.post("/register", async (req, res) => {
-	const { name, email, phone, password } = req.body;
-	if (!name || !email || !password) {
+	const { firstName, lastName, email, phone, password } = req.body;
+	if (!firstName || !lastName || !email || !password) {
 		return res
 			.status(422)
 			.json({ message: "Please fill required fields properly." });
@@ -28,7 +28,7 @@ router.post("/register", async (req, res) => {
 				.json({ message: "Password Length must be greater than 8." });
 		}
 
-		const user = new User({ name, email, phone, password });
+		const user = new User({ firstName, lastName, email, phone, password });
 		// Middleware Hash happens here
 		const registered = await user.save();
 		if (registered) {
@@ -54,15 +54,26 @@ router.post("/signin", async (req, res) => {
 				userExist.password
 			);
 			if (verifiedPassword) {
+				const { _id, firstName, lastName, email, role } = userExist;
 				// jWT token generate
 				const getToken = await userExist.generateAuthToken();
-				//console.log(getToken);
-				res.cookie("Jwt Cookie", getToken, {
-					expires: new Date(Date.now() + 259200000), // 3 days in miliseconds
-					httpOnly: true,
-				});
+				// console.log(getToken);
+				// res.cookie("Jwt Cookie", getToken, {
+				// 	expires: new Date(Date.now() + 259200000), // 3 days in miliseconds
+				// 	httpOnly: true,
+				// });
 
-				res.status(200).json({ message: "Login Successful!" });
+				res.status(200).json({
+					message: "Login Successful!",
+					token: getToken,
+					user: {
+						userId: _id,
+						firstName,
+						lastName,
+						email,
+						role,
+					},
+				});
 			}
 		} else {
 			res.status(500).json({ message: "Invalid Credentials." });
@@ -73,8 +84,8 @@ router.post("/signin", async (req, res) => {
 });
 
 router.get("/cvProfile", authenticate, (req, res) => {
-	console.log("from /cvProfile backend api");
-	res.send(req.rootUser);
+	//console.log(req.userFound);
+	res.send(req.userFound);
 });
 
 module.exports = router;

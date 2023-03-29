@@ -3,7 +3,11 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema({
-	name: {
+	firstName: {
+		type: String,
+		required: true,
+	},
+	lastName: {
 		type: String,
 		required: true,
 	},
@@ -18,6 +22,7 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	role: { type: String, default: "NORMAL" },
 	tokens: [{ token: { type: String, required: true } }],
 });
 
@@ -34,7 +39,16 @@ userSchema.pre("save", async function (next) {
 // JWT token verification
 userSchema.methods.generateAuthToken = async function () {
 	try {
-		let sendToken = jwt.sign({ _id: this._id }, process.env.AUTH_SECRET);
+		let sendToken = jwt.sign(
+			{
+				userId: this._id,
+				firstName: this.firstName,
+				lastName: this.lastName,
+				email: this.email,
+				role: this.role,
+			},
+			process.env.AUTH_SECRET
+		);
 		this.tokens = this.tokens.concat({ token: sendToken });
 		await this.save();
 		return sendToken;

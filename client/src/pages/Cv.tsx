@@ -1,47 +1,49 @@
-import React, { useEffect } from "react";
-import profilePic from "../images/profile1.jpg";
-import { Navigate } from "react-router-dom";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
+import { ApiConstants } from "../api/api_constants";
+import custom_axios from "../axios/custom_axios";
+import ProfilePic from "../assets/profile1.jpg";
+import NavBar from "../components/NavBar";
+import { getLoginInfo } from "../utils/LoginInfo";
+import { useNavigate } from "react-router-dom";
+import "../assets/cvPage.css";
 
-const Cv = () => {
-	// const navigate = useNavigate();
-	//const [userData, setUserData] = useState();
+export default function Cv() {
+	const navigate = useNavigate();
 
-	const callAboutPage = async () => {
-		try {
-			const res = fetch("/cvProfile", {
-				method: "GET",
+	const cvProfile = async () => {
+		const userId = getLoginInfo()?.userId;
+
+		const token = `Bearer ${localStorage.getItem("token")}`;
+		console.log(token, userId);
+
+		if (userId != null) {
+			const response = await custom_axios.get(ApiConstants.CV.PROFILE, {
 				headers: {
-					Accept: "application/json",
-					"Content-Type": "application/json",
+					Authorization: token,
 				},
-				credentials: "include",
 			});
 
-			// data coming from /cv get
-			const data = await res.json();
-			console.log(data);
-
-			if (res.status !== 200) {
-				throw new Error("go away");
-			}
-		} catch (error) {
-			console.log(error);
-			<Navigate to="/404" />;
+			console.log(response.data);
+		} else {
+			toast.info("Sorry you are not authenticated");
+			navigate("/");
 		}
 	};
-
 	useEffect(() => {
-		callAboutPage();
+		cvProfile();
 	}, []);
 
 	return (
-		<div className="container emp-profile">
-			<form method="GET">
+		<>
+			<NavBar></NavBar>
+
+			<div className="cvMain" id="cvPage">
 				<div className="row">
 					<div className="col-md-4">
 						<img
 							className="profilePic"
-							src={profilePic}
+							src={ProfilePic}
 							alt="user-profile"
 						></img>
 					</div>
@@ -114,9 +116,7 @@ const Cv = () => {
 						</div>
 					</div>
 				</div>
-			</form>
-		</div>
+			</div>
+		</>
 	);
-};
-
-export default Cv;
+}
