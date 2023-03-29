@@ -24,7 +24,7 @@ export default function Cv() {
 				},
 			});
 
-			console.log(response.data);
+			//console.log(response.data);
 		} else {
 			toast.info("Sorry you are not authenticated");
 			navigate("/");

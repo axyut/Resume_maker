@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Manager from "./pages/Manager";
 import ProtectedRoute from "./protectedRoute";
+import ErrorPage from "./pages/ErrorPage";
 
 const App = () => {
 	return (
@@ -56,6 +57,7 @@ const App = () => {
 							</ProtectedRoute>
 						}
 					></Route>
+					<Route path="*" element={<ErrorPage />}></Route>
 				</Routes>
 			</BrowserRouter>
 		</div>
