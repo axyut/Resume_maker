@@ -16,3 +16,90 @@
 	flex-direction: row;
 	justify-content: center;
 }
+
+/* from stackoverflow
+/* .subpage {
+	background-color: white;
+	padding: 1cm;
+	border: 5px red solid;
+	height: 297mm;
+	outline: 2cm #ffeaea solid;
+} */
+/* 
+.page {
+	width: 210mm;
+	min-height: 100%;
+	padding: 20mm;
+
+	color: #2d2d2d;
+	border: 1px #d3d3d3 solid;
+	border-radius: 5px;
+	background: white;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+*/
+.subpage {
+	background: white;
+	width: 21cm;
+	height: 29.7cm;
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 0.5cm;
+	box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+	color: #2d2d2d;
+	height: 297mm;
+	width: 210mm;
+	/* border: 5px red solid; */
+}
+
+/* @page {
+	size: A4;
+	margin: 0;
+	color: #2d2d2d;
+} */
+
+/* @media print {
+	body,
+	.page * {
+		visibility: hidden;
+	}
+	.subpage {
+		visibility: visible;
+	}
+	.subpage {
+		position: absolute;
+
+		left: 0;
+		top: 0;
+		width: 100%;
+	}
+} */
+
+/* @media print {
+	body * {
+		visibility: hidden;
+	}
+
+	.subpage {
+		color: #2d2d2d;
+		margin: 0;
+		border: initial;
+		border-radius: initial;
+		width: initial;
+		min-height: initial;
+		box-shadow: initial;
+		background: initial;
+		page-break-after: always;
+	}
+} */
+
+/* Next method */
+
+/* 
+@media print {
+	body,
+	page[size="A4"] {
+		margin: 0;
+		box-shadow: 0;
+	}
+} */

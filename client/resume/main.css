@@ -1,0 +1,141 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: rgb(255, 255, 255);
+}
+body a:link,
+body a:visited {
+  text-decoration: none;
+}
+
+.resumeCanvas {
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 0.3in;
+  width: 8.5in;
+  height: 12in;
+  background-color: rgb(250, 255, 255);
+  box-shadow: 0 3px 8px -3px rgba(0, 0, 0, 0.7);
+}
+
+.gridParent {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) 255px;
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.titleHeader {
+  grid-area: 1/1/2/6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-bottom: rgb(45, 0, 129) 1px solid;
+}
+.titleHeader .red1:hover {
+  color: rgb(228, 3, 3);
+}
+.titleHeader .orange2:hover {
+  color: rgb(255, 140, 0);
+}
+.titleHeader .yellow3:hover {
+  color: rgb(255, 237, 0);
+}
+.titleHeader .green4:hover {
+  color: rgb(0, 128, 38);
+}
+.titleHeader .blue5:hover {
+  color: rgb(0, 77, 255);
+}
+.titleHeader .purple6:hover {
+  color: rgb(117, 7, 135);
+}
+.titleHeader h1 {
+  font-family: "Poiret One", cursive;
+  font-size: 100px;
+  padding-left: 20px;
+  color: rgb(20, 0, 61);
+}
+.titleHeader h3 {
+  font-family: "Quicksand", sans-serif;
+  text-align: right;
+  padding-right: 60px;
+}
+
+.leftSummary {
+  grid-area: 2/1/6/5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border-right: rgb(45, 0, 129) 1px solid;
+  font-family: "Quicksand", sans-serif;
+}
+.leftSummary h1 {
+  margin: 5px 0 5px 0;
+  font-family: "Poiret One", cursive;
+  font-size: 30px;
+  color: rgb(20, 0, 61);
+}
+.leftSummary h4 {
+  margin-bottom: 5px;
+  text-decoration: underline;
+}
+.leftSummary h5 {
+  font-style: italic;
+}
+.leftSummary p {
+  font-size: 16px;
+  margin: 5px;
+}
+
+.rightInfo {
+  grid-area: 2/5/6/6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-left: 3px;
+  font-size: 16px;
+  font-family: "Quicksand", sans-serif;
+}
+.rightInfo .red1:hover {
+  color: rgb(228, 3, 3);
+}
+.rightInfo .orange2:hover {
+  color: rgb(255, 140, 0);
+}
+.rightInfo .yellow3:hover {
+  color: rgb(255, 237, 0);
+}
+.rightInfo .green4:hover {
+  color: rgb(0, 128, 38);
+}
+.rightInfo .blue5:hover {
+  color: rgb(0, 77, 255);
+}
+.rightInfo .purple6:hover {
+  color: rgb(117, 7, 135);
+}
+.rightInfo h1 {
+  text-align: right;
+  font-family: "Poiret One", cursive;
+  font-size: 30px;
+  color: rgb(20, 0, 61);
+}
+.rightInfo p {
+  margin: 10px;
+}
+.rightInfo li {
+  list-style-type: circle;
+  list-style-position: inside;
+  margin: 10px;
+}
+.rightInfo a:link,
+.rightInfo a:visited {
+  color: black;
+}/*# sourceMappingURL=main.css.map */

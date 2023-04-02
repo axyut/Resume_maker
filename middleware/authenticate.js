@@ -29,9 +29,10 @@ const authenticate = async (req, res, next) => {
 		if (error.message == "jwt expired") {
 			res.status(500).json({ message: error.message });
 			console.log(error);
+		} else {
+			res.status(500).json({ message: "Unauthorized Access." });
+			console.log(error);
 		}
-		res.status(500).json({ message: "Unauthorized Access." });
-		console.log(error);
 	}
 };
 

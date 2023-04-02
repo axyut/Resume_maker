@@ -40,7 +40,7 @@ const Login = () => {
 			toast.info(response.data.message);
 			navigate("/");
 		} catch (error: any) {
-			//localStorage.removeItem("token");
+			localStorage.removeItem("token");
 			console.log(error);
 
 			toast.warn("Login Failed");

@@ -15,17 +15,27 @@ export default function Cv() {
 		const userId = getLoginInfo()?.userId;
 
 		const token = `Bearer ${localStorage.getItem("token")}`;
-		console.log(token, userId);
+		// console.log(token, userId);
+		try {
+			if (userId != null) {
+				const response = await custom_axios.get(
+					ApiConstants.CV.PROFILE,
+					{
+						headers: {
+							Authorization: token,
+						},
+					}
+				);
 
-		if (userId != null) {
-			const response = await custom_axios.get(ApiConstants.CV.PROFILE, {
-				headers: {
-					Authorization: token,
-				},
-			});
-
-			//console.log(response.data);
-		} else {
+				//console.log(response.data);
+			} else {
+				localStorage.removeItem("token");
+				toast.info("Sorry you are not authenticated");
+				navigate("/");
+			}
+		} catch (error) {
+			console.log(error);
+			localStorage.removeItem("token");
 			toast.info("Sorry you are not authenticated");
 			navigate("/");
 		}
@@ -88,32 +98,63 @@ export default function Cv() {
 							value="Edit cV"
 						></input>
 					</div>
-				</div>
-				<div className="row">
-					<div>
-						<p>WORK LINK</p>
+					<div className="row">
+						<div>
+							<p>WORK LINK</p>
+						</div>
+						<div
+							className="tab-content profile-tab"
+							id="myTabContent"
+						>
+							<div
+								className="tab-pane fade show active"
+								id="edu"
+								role="tabpanel"
+							>
+								<div>
+									<label>School:</label>
+									<p>School name</p>
+								</div>
+							</div>
+							<div
+								className="tab-pane fade show active"
+								id="exp"
+								role="tabpanel"
+							>
+								<div>
+									<label>Company:</label>
+									<p>Company name</p>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div className="tab-content profile-tab" id="myTabContent">
-						<div
-							className="tab-pane fade show active"
-							id="edu"
-							role="tabpanel"
+					<div>
+						<button
+							onClick={() => {
+								window.print();
+							}}
 						>
-							<div>
-								<label>School:</label>
-								<p>School name</p>
-							</div>
-						</div>
-						<div
-							className="tab-pane fade show active"
-							id="exp"
-							role="tabpanel"
-						>
-							<div>
-								<label>Company:</label>
-								<p>Company name</p>
-							</div>
-						</div>
+							Print
+						</button>
+					</div>
+				</div>
+
+				<div className="page">
+					<div className="subpage">
+						<p>This is first FirstPage</p>
+						<p>This is first FirstPage</p>
+						<p>This is first FirstPage</p>
+						<p>This is first FirstPage</p>
+						<p>This is first FirstPage</p>
+						<p>This is first FirstPage</p>sd
+					</div>
+					<div className="subpage">
+						<p>This is second secondPage</p>
+						<p>This is second secondPage</p>
+						<p>This is second secondPage</p>
+						<p>This is second secondPage</p>
+						<p>This is second secondPage</p>
+						<p>This is second secondPage</p>
 					</div>
 				</div>
 			</div>

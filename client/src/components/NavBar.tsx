@@ -30,11 +30,11 @@ const NavBar = () => {
 			<div className="link-items">
 				{/* <a
 					onClick={() => {
-						navigate("/cv");
+						navigate("/docs");
 					}}
 				>
 					{" "}
-					Cv
+					Document
 				</a> */}
 
 				<a onClick={() => navigate("/manager")}>Manager</a>

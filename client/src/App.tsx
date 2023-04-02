@@ -10,6 +10,7 @@ import SignUp from "./pages/SignUp";
 import Manager from "./pages/Manager";
 import ProtectedRoute from "./protectedRoute";
 import ErrorPage from "./pages/ErrorPage";
+import Document from "./pages/document";
 
 const App = () => {
 	return (
@@ -44,6 +45,14 @@ const App = () => {
 						element={
 							<ProtectedRoute>
 								<Manager />
+							</ProtectedRoute>
+						}
+					/>
+					<Route
+						path="/docs"
+						element={
+							<ProtectedRoute>
+								<Document />
 							</ProtectedRoute>
 						}
 					/>
