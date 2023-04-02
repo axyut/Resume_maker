@@ -20,29 +20,29 @@ const NavBar = () => {
 				<span
 					id="nav-span"
 					onClick={() => {
-						navigate("/");
+						navigate("/cv");
 					}}
 				>
-					<img className="logo" src={Logo} alt="todo-done-logo" />{" "}
 					Resume Maker
 				</span>
 			</div>
-			<div className="link-items-last">
-				<a className="button-tans" onClick={logout}>
-					Log Out
-				</a>
-			</div>
+
 			<div className="link-items">
-				<div className="link-items-middle">
-					<a
-						onClick={() => {
-							navigate("/cv");
-						}}
-					>
-						{" "}
-						Cv
+				{/* <a
+					onClick={() => {
+						navigate("/cv");
+					}}
+				>
+					{" "}
+					Cv
+				</a> */}
+
+				<a onClick={() => navigate("/manager")}>Manager</a>
+
+				<div className="link-items-last">
+					<a className="button-tans" onClick={logout}>
+						LogOut
 					</a>
-					<a onClick={() => navigate("/manager")}>Manager</a>
 				</div>
 			</div>
 		</nav>

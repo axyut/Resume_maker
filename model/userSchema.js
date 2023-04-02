@@ -47,7 +47,8 @@ userSchema.methods.generateAuthToken = async function () {
 				email: this.email,
 				role: this.role,
 			},
-			process.env.AUTH_SECRET
+			process.env.AUTH_SECRET,
+			{ expiresIn: "1h" }
 		);
 		this.tokens = this.tokens.concat({ token: sendToken });
 		await this.save();
