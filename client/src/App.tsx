@@ -10,7 +10,7 @@ import SignUp from "./pages/SignUp";
 import Manager from "./pages/Manager";
 import ProtectedRoute from "./protectedRoute";
 import ErrorPage from "./pages/ErrorPage";
-import Document from "./pages/document";
+import Document from "./pages/Document";
 
 const App = () => {
 	return (
